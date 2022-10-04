@@ -52,3 +52,44 @@ pid.append(img); //no borra el contenido sino que agrega la imagen después.
 // appendChild 
 
 // pid.innerHTML = " ";  Este string vacío borraría lo que hay dentro de ese párrafo
+
+
+
+//EVENTOS EN JAVASCRIPT: Con JS cambiar el html luego de escuchar los eventos.
+
+const h3 = document.querySelector('h3');
+const input1 = document.querySelector('#calculo1');
+const input2 = document.querySelector('#calculo2');
+const btn = document.querySelector('#btnCalcular');
+const pInvisible = document.querySelector('#parrafoInvisible');
+const form = document.querySelector('#form');
+//EL ATRIBUTO en html del input onchange="console.log('cambió el input')" 
+// y del btn onclick="myFuncionBtnOnClick() se escriben como función en JS.
+
+/* btn.addEventListener('click', myFuncionBtnOnClick);
+
+function myFuncionBtnOnClick() {
+    console.log('Escuchando el evento click');
+    let resultado = (Number(input1.value) + parseInt(input2.value));
+    //podría ser convertido a integer asi: let resultado = (+input1.value + +input2.value);  UNARY PLUSS OPERATOR (+) Syntax +x
+    console.log(resultado);
+    pInvisible.innerText = "El resultado es: " + resultado;
+} */
+
+// si se escribe un string, el resultado es NaN porque no se podria utilizar Number() ni parseInt()
+// OTRA FORMA DE CONVERTIR A NÚMERO: console.log(+input1.value + +input2.value); Se llama Unary plus (+) operator
+// FORM utiliza el ultimo boton y lo interpreta de tipo SUBMIT, se recarga la pagina y envía la información.
+// hay que utilizar 
+
+form.addEventListener('submit', sumarInputValues); // (habria que cambiar la función.)
+function sumarInputValues(event) {
+    console.log({event});
+    event.preventDefault(); //para que no recargue la página
+    let resultado = (Number(input1.value) + parseInt(input2.value));
+    console.log(resultado);
+    pInvisible.innerText = "El resultado es: " + resultado;
+}
+//Ahora no escucha el click, sino el submit del formulario.
+
+//OTRA FORMA DE RESOLVER:
+// en el html aplicar el atributo al button type="button", no se ejecutará evento submit, se ejecuta la función de click de ese botón.
